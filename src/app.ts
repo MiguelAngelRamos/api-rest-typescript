@@ -8,6 +8,7 @@ dotenv.config({
   path: `${__dirname}/../config/${process.env.APP_ENV}.env`
 });
 
+console.log(process.env.APP_FOO);
 const app: express.Application = express();
 
 export { app };
