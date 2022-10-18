@@ -12,3 +12,14 @@ export default createPool({
   database: process.env.db_mysql_database,
   decimalNumbers: true
 });
+
+// const connector = createPool({
+//   host: process.env.db_mysql_host,
+//   user: process.env.db_mysql_user,
+//   password: process.env.db_mysql_password,
+//   database: process.env.db_mysql_database,
+//   decimalNumbers: true
+// });
+
+
+

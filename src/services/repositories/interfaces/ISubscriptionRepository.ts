@@ -12,6 +12,6 @@ export interface ISubscriptionRepository {
 
   update(entry: ISubscriptionDomain): Promise<void>;
 
-  remove(id: number): Promise<void>
+  remove(id: number): Promise<void>;
 
 }
