@@ -54,6 +54,7 @@ export class SubscriptionMySQLRepository implements ISubscriptionRepository {
     );
     //* El ultimo parametro hace referencia al where id (entry.id)
   }
+  
   public async remove(id: number): Promise<void> {
     await connector.execute(
       'DELETE FROM wallet_subscription WHERE id = ?', [id]
