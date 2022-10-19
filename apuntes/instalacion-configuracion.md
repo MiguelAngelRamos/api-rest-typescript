@@ -24,6 +24,17 @@
     ```
     npx eslint --init
    ```
+     - Le decimos que Y(Yes)
+     - Seleccionamos "To check syntax and find problem"
+     -  Seleccionamos "JavaScript modules (import/export)"
+     -  Seleccionamos "None of these"
+     - Does your project use TypeScript -  No / Yes (Yes)
+     - Where does your code run? - Selccionamos "Node"
+     - What format do you want your config file to be in? - Seleccionamos "JavaScript"
+     - Would you like to install them now with npm? No/Yes (Yes)
+     - npm 
+
+
 
 5. Creamos la estructura carpetas
    Creamos la carpeta config y src en donde tendremos toda la estructura para trabajar con el patrón repositorio. (revizar la primera clase en donde creamos toda esa estructura).
