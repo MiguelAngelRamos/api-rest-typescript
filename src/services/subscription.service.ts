@@ -1,6 +1,7 @@
 import { ISubscriptionDomain } from './repositories/domain/ISubscriptionDomain';
 import { ISubscriptionRepository } from './repositories/interfaces/ISubscriptionRepository';
-import { ISubscriptionCreateDto } from '../dtos/subscription.dto';
+import { ISubscriptionCreateDto, ISuscriptionUpdateDto } from '../dtos/subscription.dto';
+import { ApplicationException } from '../common/exceptions/application.exception';
 
 export class SubscriptionService {
 
@@ -23,6 +24,30 @@ export class SubscriptionService {
 
     if(!originalEntry) {
       await this.subscriptionRepository.store(entry as ISubscriptionDomain);
+    } else {
+      throw new ApplicationException('User subscription already existis!');
     }
+  }
+
+  //* Actualizar
+  public async update(id: number, entry: ISuscriptionUpdateDto ): Promise<void> {
+    //* vamos a traer la subscription para actualizarla
+    const originalEntry = await this.subscriptionRepository.find(id);
+
+    //* existe un subscription, vamos actualizar
+    if(originalEntry) {
+      originalEntry.code= entry.code;
+      originalEntry.amount = entry.amount;
+      originalEntry.cron = entry.cron;
+      //* Actualizamos
+      await this.subscriptionRepository.update(originalEntry);
+    } else {
+      throw new ApplicationException('Subscription not found');
+    }
+  }
+
+  //* Eliminar la subscription
+  public async remove(id: number): Promise<void> {
+    await this.subscriptionRepository.remove(id);
   }
 }
