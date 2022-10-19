@@ -4,7 +4,7 @@ process.env.APP_ENV = process.env.APP_ENV || 'development'; //* Si esta difinido
 import dotenv from 'dotenv';
 import express from 'express';
 import loadContainer from './container';
-
+import { loadControllers } from 'awilix-express';
 dotenv.config({
   path: `${__dirname}/../config/${process.env.APP_ENV}.env`
 });
@@ -14,4 +14,6 @@ const app: express.Application = express();
 
 loadContainer(app);
 
+//* va a cargar todos los controladores que se creen en el carpeta "controllers"
+app.use(loadControllers('controllers/*.ts', { cwd: __dirname}));
 export { app };

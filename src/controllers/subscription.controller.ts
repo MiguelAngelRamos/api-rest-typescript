@@ -18,5 +18,4 @@ export class SubscriptionController extends ErrorBaseController {
       this.handleException(error, res);
     }
   }
-
 }
