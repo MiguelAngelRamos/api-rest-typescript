@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { SubscriptionService } from '../services/subscription.service';
-import { route, GET } from "awilix-express";
+import { route, GET, POST } from "awilix-express";
 import { ErrorBaseController } from "../common/error-controllers/error-base.controller";
+import { ISubscriptionCreateDto } from '../dtos/subscription.dto';
 
 @route('/subscriptions')
 export class SubscriptionController extends ErrorBaseController {
@@ -14,6 +15,22 @@ export class SubscriptionController extends ErrorBaseController {
   public async all(req: Request, res: Response) {
     try {
       res.send(await this.subscriptionService.all());
+    } catch (error) {
+      this.handleException(error, res);
+    }
+  }
+
+  @POST()
+  public async store(req: Request, res: Response) {
+    try {
+      await this.subscriptionService.store({
+        user_id: req.body.user_id,
+        code: req.body.code,
+        amount: req.body.amount,
+        cron: req.body.cron
+      } as ISubscriptionCreateDto);
+      res.status(201);
+      res.send({ data: "subscription creada con exito!"});
     } catch (error) {
       this.handleException(error, res);
     }
