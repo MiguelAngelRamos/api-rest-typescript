@@ -49,7 +49,7 @@ export class SubscriptionMySQLRepository implements ISubscriptionRepository {
   public async update(entry: ISubscriptionDomain): Promise<void> {
     const nowDate = new Date();
     await connector.execute(
-      'UPDATE wallet_subscription SET user_id = ?, code = ?, amount = ?, cron = ?, updated_at = ?, WHERE id = ?',
+      'UPDATE wallet_subscription SET user_id = ?, code = ?, amount = ?, cron = ?, updated_at = ? WHERE id = ?',
       [entry.user_id, entry.code, entry.amount, entry.cron, nowDate, entry.id]
     );
     //* El ultimo parametro hace referencia al where id (entry.id)
