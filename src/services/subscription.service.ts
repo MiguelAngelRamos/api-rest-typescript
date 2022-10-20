@@ -20,7 +20,7 @@ export class SubscriptionService {
   public async store(entry: ISubscriptionCreateDto): Promise<void> {
     //* Buscar si existe un usuario asociado a la subscription
     const originalEntry = await this.subscriptionRepository.findByUserIdAndCode(entry.user_id, entry.code);
-    console.log(originalEntry);
+      console.log(originalEntry);
 
     if(!originalEntry) {
       await this.subscriptionRepository.store(entry as ISubscriptionDomain);
