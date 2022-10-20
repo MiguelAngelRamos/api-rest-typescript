@@ -3,7 +3,7 @@ import { SubscriptionService } from '../services/subscription.service';
 import { route, GET } from "awilix-express";
 import { ErrorBaseController } from "../common/error-controllers/error-base.controller";
 
-@route('/subscription')
+@route('/subscriptions')
 export class SubscriptionController extends ErrorBaseController {
 
   constructor(private readonly subscriptionService: SubscriptionService) {
