@@ -20,6 +20,25 @@ export class SubscriptionController extends ErrorBaseController {
     }
   }
 
+  @route('/:id')
+  @GET()
+  public async find(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id);
+      const result = await this.subscriptionService.find(id);
+     
+      if(!result) {
+        res.status(404);
+        res.send();
+        return;
+      }
+      //* Existe el recurso lo retornamos
+      res.send(result);
+    } catch (error) {
+      this.handleException(error, res);
+    }
+  }
+
   @POST()
   public async store(req: Request, res: Response) {
     try {
