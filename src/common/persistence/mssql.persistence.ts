@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config({
   path: `${__dirname}/../../../config/${process.env.APP_ENV}.env`
 });
-console.log(process.env.db_mssql_password);
+// console.log(process.env.db_mssql_password);
 
 const config = {
   server: process.env.db_mssql_server as string,
