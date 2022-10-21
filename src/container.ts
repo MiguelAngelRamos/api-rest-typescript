@@ -1,8 +1,9 @@
 import express from 'express';
 import { createContainer, asClass } from 'awilix';
 import { scopePerRequest } from 'awilix-express';
-import { SubscriptionMySQLRepository } from './services/repositories/impl/mysql/subscription.repository';
+// import { SubscriptionMySQLRepository } from './services/repositories/impl/mysql/subscription.repository';
 import { SubscriptionService } from './services/subscription.service';
+import { SubscriptionMSSQLRepository } from './services/repositories/impl/mssql/subscription.respository';
 
 export default (app: express.Application) => {
 
@@ -11,7 +12,8 @@ export default (app: express.Application) => {
   container.register(
     {
       //* Repositories
-      subscriptionRepository: asClass(SubscriptionMySQLRepository).scoped(), 
+      // subscriptionRepository: asClass(SubscriptionMySQLRepository).scoped(), 
+      subscriptionRepository: asClass(SubscriptionMSSQLRepository).scoped(), 
       //* Servicios
       subscriptionService: asClass(SubscriptionService).scoped()
     }

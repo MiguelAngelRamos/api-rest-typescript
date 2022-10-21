@@ -51,4 +51,8 @@
 
 12. El controlador recibe una inyeccion de dependencias del servicio, el controlador necesita manejar sus errores en el common -> "error-controller" -> "error-base.controller.ts"
 
+13. Crear los métodos del C.R.U.D consumiendo la inyección del Servicio
+
+14. Realizar la conexion a Sql Server
+
 

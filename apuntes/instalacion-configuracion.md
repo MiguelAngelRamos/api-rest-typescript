@@ -69,3 +69,10 @@
    ```
    npm install mysql2 --save
    ```
+   
+   ### Instalación para trabajar con SQL Server
+
+   ```
+    npm install mssql@6.2.0 --save
+    npm install @types/mssql@8.1.1 --save-dev
+   ```
