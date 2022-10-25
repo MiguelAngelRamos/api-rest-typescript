@@ -4,6 +4,7 @@ import { route, GET, POST, PUT, DELETE } from "awilix-express";
 import { ErrorBaseController } from "../common/error-controllers/error-base.controller";
 import { ISubscriptionCreateDto, ISuscriptionUpdateDto } from '../dtos/subscription.dto';
 import { Request as JWTRequest } from "express-jwt";
+
 @route('/subscriptions')
 export class SubscriptionController extends ErrorBaseController {
 
