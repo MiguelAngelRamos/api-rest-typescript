@@ -3,7 +3,7 @@ import { SubscriptionService } from '../services/subscription.service';
 import { route, GET, POST, PUT, DELETE } from "awilix-express";
 import { ErrorBaseController } from "../common/error-controllers/error-base.controller";
 import { ISubscriptionCreateDto, ISuscriptionUpdateDto } from '../dtos/subscription.dto';
-
+import { Request as JWTRequest } from "express-jwt";
 @route('/subscriptions')
 export class SubscriptionController extends ErrorBaseController {
 
@@ -12,10 +12,12 @@ export class SubscriptionController extends ErrorBaseController {
   }
 
   @GET()
-  public async all(req: Request, res: Response) {
+  public async all(req: JWTRequest, res: Response) {
    
     try {
-      res.send(await this.subscriptionService.all());
+        
+      res.send(await this.subscriptionService.all()); 
+      console.log(req.auth);
     } catch (error) {
       this.handleException(error, res);
     }

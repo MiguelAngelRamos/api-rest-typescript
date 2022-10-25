@@ -17,12 +17,19 @@ app.use(express.json());
 loadContainer(app);
 
 //* JWT para proteger las rutas
+
 if(process.env.jwt_secret_key) {
   app.use(expressjwt({
     secret: process.env.jwt_secret_key,
     algorithms: ["HS256"]
-  }).unless({path: ['/subscriptions']}));
+  }));
 }
+// if(process.env.jwt_secret_key) {
+//   app.use(expressjwt({
+//     secret: process.env.jwt_secret_key,
+//     algorithms: ["HS256"]
+//   }).unless({path: ['/subscriptions']}));
+// }
 //* va a cargar todos los controladores que se creen en el carpeta "controllers"
 app.use(loadControllers('controllers/*.ts', { cwd: __dirname}));
 export { app };
