@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import loadContainer from './container';
 import { loadControllers } from 'awilix-express';
+import { expressjwt } from 'express-jwt';
+
 dotenv.config({
   path: `${__dirname}/../config/${process.env.APP_ENV}.env`
 });
@@ -14,6 +16,13 @@ const app: express.Application = express();
 app.use(express.json());
 loadContainer(app);
 
+//* JWT para proteger las rutas
+if(process.env.jwt_secret_key) {
+  app.use(expressjwt({
+    secret: process.env.jwt_secret_key,
+    algorithms: ["HS256"]
+  }).unless({path: ['/subscriptions']}));
+}
 //* va a cargar todos los controladores que se creen en el carpeta "controllers"
 app.use(loadControllers('controllers/*.ts', { cwd: __dirname}));
 export { app };
